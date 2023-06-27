@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:list_food/detail_page.dart';
 
 class ListItem extends StatelessWidget {
   final String nama;
@@ -13,7 +14,18 @@ class ListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetailPage(
+              nama: nama,
+              gambar: gambar,
+              deskripsi: deskripsi,
+            ),
+          ),
+        );
+      },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 5),
         decoration: const BoxDecoration(
