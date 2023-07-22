@@ -1,3 +1,3 @@
 # List Food
 
-A tutorial project for Bengkel Koding Module
+A tutorial project for Bengkel Koding Modul
