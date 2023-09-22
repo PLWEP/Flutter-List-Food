@@ -12,8 +12,13 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: const Color(0xFFFFF3E0),
         appBar: AppBar(
-          title: const Text("List Kuliner"),
+          title: const Text(
+            "List Kuliner",
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          ),
+          centerTitle: true,
         ),
         body: const HomePage(),
       ),
