@@ -16,6 +16,12 @@ class HomePage extends StatelessWidget {
             nama: list_makanan[index].nama,
             deskripsi: list_makanan[index].deskripsi,
             gambar: list_makanan[index].gambar,
+            detail: list_makanan[index].detail,
+            waktubuka: list_makanan[index].waktubuka,
+            harga: list_makanan[index].harga,
+            gambarlain: list_makanan[index].gambarlain,
+            bahan: list_makanan[index].bahan,
+            kalori: list_makanan[index].kalori,
           );
         },
       ),
