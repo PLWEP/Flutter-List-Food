@@ -21,8 +21,7 @@ class Makanan {
       required this.gambar});
 }
 
-// ignore: non_constant_identifier_names
-List<Makanan> list_makanan = [
+List<Makanan> listMakanan = [
   Makanan(
       nama: 'Bubur',
       deskripsi: 'Nasi Lembek',

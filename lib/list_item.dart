@@ -75,7 +75,7 @@ class ListItem extends StatelessWidget {
               width: 10,
             ),
             Container(
-              padding: EdgeInsets.only(left: 5),
+              padding: const EdgeInsets.only(left: 5),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
