@@ -1,28 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:list_food/detail_page.dart';
+import 'package:list_food/makanan.dart';
+import 'package:list_food/styles.dart';
 
 class ListItem extends StatelessWidget {
-  final String nama;
-  final String detail;
-  final String deskripsi;
-  final String gambar;
-  final String waktubuka;
-  final String harga;
-  final String kalori;
-  final List<String> gambarlain;
-  final List<Map<String, String>> bahan;
+  final Makanan makanan;
 
-  const ListItem(
-      {super.key,
-      required this.nama,
-      required this.harga,
-      required this.gambarlain,
-      required this.detail,
-      required this.kalori,
-      required this.bahan,
-      required this.waktubuka,
-      required this.deskripsi,
-      required this.gambar});
+  const ListItem({super.key, required this.makanan});
 
   @override
   Widget build(BuildContext context) {
@@ -31,72 +15,69 @@ class ListItem extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => DetailPage(
-              nama: nama,
-              gambar: gambar,
-              kalori: kalori,
-              deskripsi: deskripsi,
-              waktubuka: waktubuka,
-              detail: detail,
-              harga: harga,
-              gambarlain: gambarlain,
-              bahan: bahan,
-            ),
+            builder: (context) => DetailPage(makanan: makanan),
           ),
         );
       },
       child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 10),
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black,
-              offset: Offset(3.0, 4.0),
-              blurRadius: 2.0,
-            ),
-          ],
-        ),
+        margin: const EdgeInsets.symmetric(vertical: 8),
+        decoration: decorBoxContainer(),
         height: 100,
-        padding: const EdgeInsets.symmetric(
-          horizontal: 10,
-          vertical: 15,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(
-              gambar,
-              height: 75,
-              width: 75,
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Container(
-              padding: const EdgeInsets.only(left: 5),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    nama,
-                    style: const TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    deskripsi,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
-              ),
-            )
+            ClipRRect(
+                borderRadius: BorderRadius.circular(5),
+                child: Image.asset(
+                  makanan.gambar,
+                  height: 75,
+                  width: 85,
+                  fit: BoxFit.cover,
+                )),
+            const SizedBox(width: 10),
+            itemText(),
+            Icon(Icons.food_bank_rounded, color: iconColor, size: 30)
           ],
         ),
+      ),
+    );
+  }
+
+  BoxDecoration decorBoxContainer() {
+    return const BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.all(Radius.circular(10)),
+      boxShadow: [
+        BoxShadow(
+          color: Color.fromARGB(255, 178, 178, 178),
+          offset: Offset(1.0, 2.0),
+          blurRadius: 6.0,
+        ),
+      ],
+    );
+  }
+
+  Expanded itemText() {
+    return Expanded(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(makanan.nama, style: textHeader2),
+          Text(
+            makanan.deskripsi,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(color: Colors.black38),
+          ),
+          Text(
+            makanan.harga,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.black45,
+            ),
+          ),
+        ],
       ),
     );
   }

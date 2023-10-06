@@ -1,186 +1,159 @@
 import 'package:flutter/material.dart';
+import 'package:list_food/makanan.dart';
+import 'package:list_food/styles.dart';
 
 class DetailPage extends StatelessWidget {
-  final String nama;
-  final String detail;
-  final String deskripsi;
-  final String gambar;
-  final String waktubuka;
-  final String harga;
-  final String kalori;
-  final List<String> gambarlain;
-  final List<Map<String, String>> bahan;
+  final Makanan makanan;
 
-  const DetailPage(
-      {super.key,
-      required this.nama,
-      required this.harga,
-      required this.gambarlain,
-      required this.detail,
-      required this.kalori,
-      required this.waktubuka,
-      required this.deskripsi,
-      required this.gambar,
-      required this.bahan});
+  const DetailPage({super.key, required this.makanan});
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: const Color(0xFFFFF3E0),
+        backgroundColor: pageBgColor,
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Stack(
                 children: <Widget>[
-                  Image.asset(
-                    gambar,
-                    scale: 0.5,
-                  ),
-                  SafeArea(
+                  Image.asset(makanan.gambar, scale: 0.5),
+                  const SafeArea(
                     child: Padding(
-                      padding: const EdgeInsets.all(12.0),
+                      padding: EdgeInsets.all(12.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: Colors.grey,
-                            child: IconButton(
-                              icon: const Icon(
-                                Icons.arrow_back,
-                                color: Colors.white,
-                              ),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                            ),
-                          ),
-                          const FavouriteButton(),
-                        ],
+                        children: [backButton(), FavouriteButton()],
                       ),
                     ),
                   ),
                 ],
               ),
               Container(
-                margin: const EdgeInsets.only(top: 16.0),
+                decoration: const BoxDecoration(color: headerBackColor),
+                padding: const EdgeInsets.symmetric(vertical: 5),
                 child: Text(
-                  nama,
+                  makanan.nama,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                      fontSize: 30.0, fontWeight: FontWeight.bold),
+                      color: Colors.white,
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 16.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Column(
-                      children: [
-                        const Icon(Icons.access_time_filled,
-                            color: Color.fromARGB(255, 255, 230, 0)),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          waktubuka,
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        const Icon(
-                          Icons.local_fire_department,
-                          color: Colors.red,
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          kalori,
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        const Icon(Icons.monetization_on, color: Colors.green),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          harga,
-                        ),
-                      ],
-                    ),
+                  children: [
+                    attributes(Icons.access_time_filled, makanan.waktubuka),
+                    attributes(Icons.local_fire_department, makanan.kalori),
+                    attributes(Icons.monetization_on, makanan.harga),
                   ],
                 ),
               ),
               Container(
-                padding: const EdgeInsets.all(16),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                margin: const EdgeInsets.only(bottom: 10),
                 child: Text(
-                  detail,
+                  makanan.detail,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 16,
-                  ),
+                  style: const TextStyle(fontSize: 16),
                 ),
               ),
-              SizedBox(
-                height: 150,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: gambarlain.map((url) {
-                    return Padding(
-                      padding: const EdgeInsets.all(4),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.asset(url),
-                      ),
-                    );
-                  }).toList(),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
+              listGambar(),
+              const SizedBox(height: 10),
               const Text(
                 'Bahan Racikan',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                style: textHeader2,
               ),
-              const SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                height: 100,
-                child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) => Container(
-                          padding: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(40),
-                          ),
-                          child: Column(
-                            children: [
-                              Image.asset(bahan[index].values.first, width: 52),
-                              Text(bahan[index].keys.first),
-                            ],
-                          ),
-                        ),
-                    separatorBuilder: (_, index) => const SizedBox(
-                          width: 15,
-                        ),
-                    itemCount: bahan.length),
-              ),
-              const SizedBox(
-                height: 50,
-              )
+              const SizedBox(height: 10),
+              listRacikan(),
+              const SizedBox(height: 50)
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  SizedBox listGambar() {
+    return SizedBox(
+      height: 150,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: makanan.gambarlain.map((url) {
+          return Padding(
+            padding: const EdgeInsets.all(5),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.asset(url),
+            ),
+          );
+        }).toList(),
+      ),
+    );
+  }
+
+  SizedBox listRacikan() {
+    return SizedBox(
+      height: 100,
+      child: ListView.separated(
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) => Container(
+                padding: const EdgeInsets.all(10),
+                width: 120,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Column(
+                  children: [
+                    Image.asset(makanan.bahan[index].values.first, width: 52),
+                    Text(makanan.bahan[index].keys.first),
+                  ],
+                ),
+              ),
+          separatorBuilder: (_, index) => const SizedBox(width: 10),
+          itemCount: makanan.bahan.length),
+    );
+  }
+
+  Column attributes(IconData icon, String teks) {
+    return Column(
+      children: [
+        Icon(icon, color: iconColor),
+        const SizedBox(height: 3),
+        Text(
+          teks,
+          style: TextStyle(
+              color: Colors.grey[600],
+              fontSize: 12,
+              fontWeight: FontWeight.bold),
+        ),
+      ],
+    );
+  }
+}
+
+class backButton extends StatelessWidget {
+  const backButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return CircleAvatar(
+      backgroundColor: Colors.grey,
+      child: IconButton(
+        icon: const Icon(
+          Icons.arrow_back,
+          color: Colors.white,
+        ),
+        onPressed: () {
+          Navigator.pop(context);
+        },
       ),
     );
   }
@@ -198,17 +171,23 @@ class _FavouriteButtonState extends State<FavouriteButton> {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      icon: Icon(
-        isFavourite ? Icons.favorite : Icons.favorite_border,
-        color: Colors.red,
-        size: 40,
+    return Container(
+      decoration: BoxDecoration(
+          color: Colors.grey[400],
+          borderRadius: BorderRadius.circular(25),
+          backgroundBlendMode: BlendMode.screen),
+      child: IconButton(
+        icon: Icon(
+          isFavourite ? Icons.favorite : Icons.favorite_border,
+          color: Colors.red,
+          size: 40,
+        ),
+        onPressed: () {
+          setState(() {
+            isFavourite = !isFavourite;
+          });
+        },
       ),
-      onPressed: () {
-        setState(() {
-          isFavourite = !isFavourite;
-        });
-      },
     );
   }
 }

@@ -24,7 +24,7 @@ class Makanan {
 List<Makanan> listMakanan = [
   Makanan(
       nama: 'Bubur',
-      deskripsi: 'Nasi Lembek',
+      deskripsi: 'Nasi lembek dicampur dengan bumbu gurih dan toping',
       gambar: 'assets/bubur.jpg',
       detail:
           'Bubur merupakan istilah umum untuk mengacu pada campuran bahan padat dan cair, dengan komposisi cairan yang lebih banyak daripada padatan dan keadaan bahan padatan yang tercerai-berai.',

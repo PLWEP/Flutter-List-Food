@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:list_food/home_page.dart';
+import 'package:list_food/styles.dart';
 
 void main() {
   runApp(const MainApp());
@@ -13,11 +14,15 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       home: SafeArea(
         child: Scaffold(
-          backgroundColor: const Color(0xFFFFF3E0),
+          backgroundColor: pageBgColor,
           appBar: AppBar(
+            backgroundColor: headerBackColor,
             title: const Text(
-              "List Kuliner",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              "Kuliner Nusantara",
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
             ),
             centerTitle: true,
           ),

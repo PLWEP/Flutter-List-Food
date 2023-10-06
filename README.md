@@ -1,3 +1,57 @@
-# List Food
+# Langkah Tutorial List Kuliner
 
-A tutorial project for Bengkel Koding Modul
+Berikut adalah langkahnya:
+
+- Create project flutter baru
+- Buat file `styles.dart` untuk menyimpan beberapa style yang digunakan pada aplikasi
+- Buat `class Makanan` dengan atribut nama, deskripsi, gambarUtama, detail, waktuBuka, harga, kalori, list of string gambarLain, dan list of string map bahan.
+- Buat juga controllernya.
+- Buat direktori `assets` dan `assets/bahan`.
+- Copy-kan semua file yang akan kita gunakan ke dalam dua direktori tersebut.
+- Tambahkan direktori `assets` dan `assets/bahan` pada `pubspec.yaml`.
+- Buat fungsi `dummyData()` pada class `Makanan` data dengan 3 data makanan.
+- Kembali ke `main.dart`, ganti hello world dengan `Scaffold` dengan `backgroundColor`, `appBar`, dan `body`.
+- Sementara ini isi body dengan `Placeholder dulu`.
+- Kita isikan dulu `AppBar` dengan `backgroundColor`, `title`, dan `centerTitle`
+- Refactor `backgroundColor` AppBar dan Title, masukan pada `styles.dart`.
+- Refactor Placeholder menjadi class baru `HomePage`, pindah ke file `home_page`.
+- Ubah extends jadi StatelessWidget, buat constructor serta method `build`.
+- Tambahkan widget `SafeArea` > `Column` > `Row`.
+- Isikan Rownya dengan icon dan text. Tambahkan sizedbox jika diperlukan.
+- Refactor style Text header, pindahkah ke file `styles.dart`.
+- di bawah Row, tambahkan Expanded dan ListView.builder.
+- Isikan Listviewbuilder dengan list dari dummy data makanan.
+- Pada item builder buat dulu desain kotak item nya.
+- Buat kotak kosong dengan Container dan berikan dekorasi yang cantik.
+- Refactor item tersebut ke dalam class baru bernama `ListItem`, pindah ke file `list_item`.
+- Tambahkan isinya pada kotak tersebut dengan gambar `ClipRRect`, Expanded Column of text, dan Icon.
+- Refactor BoxDecoration ke Widget Baru (dalam file yang sama)
+- Refactor style textHeader2 dan iconColor ke file `style.dart`
+- Bungkus Container listitem dengan InkWell
+- Berikan fungsi onTap dengan Navigator.push ke DetailPage
+- Buat file detail_page dan class DetailPage
+- Tambahkan atribut makanan dan tambahkan pada constructornya
+- pada method `build` kembalikan SafeArea > Scaffold
+- karena isinya akan banyak, di dalam `body` gunakan SingleChildScrollView > Column
+- isikan `Image` dengan asset menuju atribut `gambar`.
+- agar di atasnya bisa diberikan icon back dan like, bungkus image tadi dengan `Stack`
+- Tambahkan Container > Row di bawah Image (di dalam stack)
+- Isikan CircleAvatar pada row tersebut. Berikan background, IconButton, dan onPressed untuk navigator.pop
+- Refactor jadi class BackButton di dalam file yang sama.
+- di dalam file yang sama, buat class FavouriteButton extends StatefulWidget.
+- Pada method buid dalam class State-nya, tambahkan `Container` > `IconButton`
+- Tambahkan class FavouriteButton pada Row Stack Image.
+- Tambahkan decoration dengan BoxDecoration.
+- Tambahkan onPressed dengan setState isFavourite.
+- Di bawah Stack Image, tambahkan Container > Text nama makanan, sesuaikan style dan dekorasinya.
+- Di bawahnya lagi, tambahkan Container > Row
+- Di dalam row, berikan Column > Icon + Text beserta style-nya
+- Refactor ke dalam method `attributes`
+- Tambahkan parameter icon dan teks
+- gunakan method atributes tersebut untuk membuat kalori dan harga
+- di bawah row attributes, berikan Container > Text beserta style-nya
+- Dibawahnya lagi tambahkan SizedBox > ListView untuk menampilkan gambar dengan ClipRReact
+- Refactor listview gambar tersebut ke method `listGambar`
+- Di bawahnya tambahkan teks 'Bahan Racikan' dan sesuaikan style-nya
+- Di bawahnya tambahkan SizedBox > ListView.separated untuk menampilkan bahan makanan dengan Container > Column > Image + Text bahan makanan
+- Selesaiiiii....
