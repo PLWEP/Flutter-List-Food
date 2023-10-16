@@ -4,6 +4,7 @@ import 'package:list_food/styles.dart';
 
 class DetailPage extends StatelessWidget {
   final Makanan makanan;
+  final api = 'https://bengkelkoding.dinus.ac.id/food/';
 
   const DetailPage({super.key, required this.makanan});
 
@@ -18,7 +19,7 @@ class DetailPage extends StatelessWidget {
             children: <Widget>[
               Stack(
                 children: <Widget>[
-                  Image.asset(makanan.gambar, scale: 0.5),
+                  Image.network(api + makanan.gambar, scale: 0.5),
                   const SafeArea(
                     child: Padding(
                       padding: EdgeInsets.all(12.0),
@@ -90,7 +91,7 @@ class DetailPage extends StatelessWidget {
             padding: const EdgeInsets.all(5),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Image.asset(url),
+              child: Image.network(api + url),
             ),
           );
         }).toList(),
@@ -112,7 +113,8 @@ class DetailPage extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Image.asset(makanan.bahan[index].values.first, width: 52),
+                    Image.network(api + makanan.bahan[index].values.first,
+                        width: 52),
                     Text(makanan.bahan[index].keys.first),
                   ],
                 ),
