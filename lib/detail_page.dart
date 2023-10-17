@@ -25,7 +25,7 @@ class DetailPage extends StatelessWidget {
                       padding: EdgeInsets.all(12.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [backButton(), FavouriteButton()],
+                        children: [BackButton(), FavouriteButton()],
                       ),
                     ),
                   ),
@@ -141,8 +141,8 @@ class DetailPage extends StatelessWidget {
   }
 }
 
-class backButton extends StatelessWidget {
-  const backButton({super.key});
+class BackButton extends StatelessWidget {
+  const BackButton({super.key});
 
   @override
   Widget build(BuildContext context) {

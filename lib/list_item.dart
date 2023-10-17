@@ -31,14 +31,18 @@ class ListItem extends StatelessWidget {
             ClipRRect(
                 borderRadius: BorderRadius.circular(5),
                 child: Image.network(
-                  url+makanan.gambar,
+                  url + makanan.gambar,
                   height: 75,
                   width: 85,
                   fit: BoxFit.cover,
                 )),
             const SizedBox(width: 10),
             itemText(),
-            Icon(Icons.food_bank_rounded, color: iconColor, size: 30)
+            const Icon(
+              Icons.food_bank_rounded,
+              color: iconColor,
+              size: 30,
+            ),
           ],
         ),
       ),

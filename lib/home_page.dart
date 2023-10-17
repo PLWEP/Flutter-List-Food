@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:list_food/list_item.dart';
 import 'package:list_food/makanan.dart';
-import 'package:list_food/styles.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
@@ -20,7 +19,7 @@ class _HomePageState extends State<HomePage> {
 
     if (response.statusCode == 200) {
       List jsonResponse = json.decode(response.body);
-      return jsonResponse.map((makanan) => new Makanan.fromJson(makanan)).toList();
+      return jsonResponse.map((makanan) => Makanan.fromJson(makanan)).toList();
     } else {
       throw Exception();
     }
@@ -30,6 +29,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
+    super.initState();
     futuremakanan = fetchmakanan();
   }
 
@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
           } else if (snapshot.hasError) {
             return Text('${snapshot.error}');
           } else {
-            return const CircularProgressIndicator();
+            return const Center(child: CircularProgressIndicator());
           }
         },
       ),
