@@ -4,6 +4,7 @@ import 'package:list_food/makanan.dart';
 import 'package:list_food/styles.dart';
 
 class ListItem extends StatelessWidget {
+  final url = 'https://bengkelkoding.dinus.ac.id/food/';
   final Makanan makanan;
 
   const ListItem({super.key, required this.makanan});
@@ -29,8 +30,8 @@ class ListItem extends StatelessWidget {
           children: [
             ClipRRect(
                 borderRadius: BorderRadius.circular(5),
-                child: Image.asset(
-                  makanan.gambar,
+                child: Image.network(
+                  url+makanan.gambar,
                   height: 75,
                   width: 85,
                   fit: BoxFit.cover,
